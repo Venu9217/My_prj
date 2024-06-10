@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Suggestion</title> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin-left: 360px;
+	    margin-top:50px; 
+        margin-bottom: 360px;
+            padding: 0;
+             /* Light gray background */
+            color: #333; /* Dark text color */ 
+            background-image: url("https://live.staticflickr.com/487/19182536835_4709565f79_h.jpg");
+            height:200px;
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff; /* White container background */
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        } 
+        #loginStatus{
+            color:white; 
+          
+            text-align: right;   }
+
+        h2 {
+            margin-left: 260px;
+            color:white;
+        } 
+
+        form {
+            height: 430px;
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.13);
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 50px 35px;
+            text-align: center;
+        }
+
+
+        label {
+            display: block;
+            margin-bottom: 5px; 
+            margin-left:55px; 
+            text-align: left;  
+            color:black;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 300px; /* Adjusting width to accommodate padding */
+            padding: 8px; 
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            font-weight: 300;  
+            
+            
+
+            margin-left:25px;
+        }
+
+        button {
+            padding: 15px 20px; 
+            margin-left:25px; 
+            margin-bottom:10px;
+            background-color: #007bff; /* Blue button */
+            color: #fff; /* White text color */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; 
+            font-family:Arial, Helvetica, sans-serif; 
+            font-weight: bold; 
+            font-size:large;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        } 
+        #logout{
+            background-color: red; 
+            
+            margin-left:900px;
+        }
+
+        #fertilizerSuggestion {
+            margin-top: 480px; 
+            width:450px; 
+            margin-left: 172px;
+            padding: 10px;
+            background-color: #f0f0f0; /* Light gray background for suggestion area */
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+            margin-bottom: 20px;
+        }
+</style>
+</head>
+<body>
+    <h2>FERTILIZER SUGGESTION</h2> 
+    <h3 id="loginStatus"></h3> 
+    <button type="button" id="logout" onclick="logoutstatus()" >GO Back </button>  
+    
+    <form id="fertilizerForm">
+        <label for="cropName">Crop Name:</label>
+        <input type="text" placeholder="enter crop name" id="cropName" name="cropName" required><br>
+        <h3 style="color: white; font-size:larger">Nutrient Compositions</h3>
+        <label for="FertilizerName">Potassium Percentage:</label>
+        <input type="Number" step="0.5" placeholder="enter Potassium Percentage" id="PotassiumName" name="FertilizerName" required><br><br> 
+        <label for="FertilizerName">Phosphorus Percentage:</label>
+        <input type="Number" step="0.5" placeholder="enter phosphorus Percentage" id="phosphorusName" name="FertilizerName" required><br><br>
+        <label for="FertilizerName">Nitrogen Percentage:</label>
+        <input type="Number" step="0.5" placeholder="enter Nitrogen Percentage" id="nitrogenName" name="FertilizerName" required><br><br>
+        <button type="button" onclick="suggestFertilizer()">Get Fertilizer Suggestion</button>
+    </form>
+    <div id="fertilizerSuggestion"></div> 
+    
+
+
+    <script> 
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            var loggedInUser = localStorage.getItem("loggedInUser");
+
+            if (loggedInUser) {
+                document.getElementById("loginStatus").innerHTML = "Welcome, <small style='color:red;font-size:larger'>" + loggedInUser.toUpperCase() + " </small> You are logged in.";
+            } 
+        }); 
+        function logoutstatus(){
+            window.location.href = "welcome";
+
+        }
+        function suggestFertilizer() {
+            var cropName = document.getElementById("cropName").value; 
+            var Nitrogen = document.getElementById("nitrogenName").value; 
+            var Phosphorus = document.getElementById("phosphorusName").value; 
+            var Potassium = document.getElementById("PotassiumName").value; 
+
+            var fertilizerSuggestion = document.getElementById("fertilizerSuggestion");
+
+            if (cropName.trim() === "") {
+                fertilizerSuggestion.innerHTML = "Please enter a crop name.";
+                return;
+            }
+            else 
+            { 
+                var suggestedFertilizer; 
+                if (cropName.toLowerCase()=='rice')  
+                {
+                    if (Nitrogen < 1.5 &&  Phosphorus< 0.2 &&  Potassium < 1.0) 
+                    {
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:NPK 15-15-15<br> SHOP NAME: SRI SAI FERTILIZER PVT.LMT <br> Distance: 5KM" ;
+                        return;
+                    }  
+                    else if (Nitrogen > 1.5 && Phosphorus<0.2 && Potassium<1.0){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:NPK 10-20-20<br> SHOP NAME: SATYA SAI  FERTILIZER PVT.LMT <br> Distance: 5KM" ;
+                        return;
+
+                    } 
+		    else if (Nitrogen < 1.5 && Phosphorus > 0.2 && Potassium<1.0){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:potassium nitrate (KNO3).<br> SHOP NAME: SRI HARSHA PESTICIDES & FERTILIZER PVT.LMT <br> Distance: 7KM" ;
+                        return;
+
+                    } 
+		    else if (Nitrogen < 1.5 && Phosphorus < 0.2 && Potassium > 1.0){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:diammonium phosphate (DAP)<br> SHOP NAME: SRI VIGNESWARA FERTILIZER PVT.LMT <br> Distance: 6KM" ;
+                        return; 
+                }
+                else if (Nitrogen < 1.5 && Phosphorus > 0.2 && Potassium > 1.0){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:UREA <br> SHOP NAME: GROMOR PVT.LMT <br> Distance: 9KM" ;
+                        return; 
+                } 
+		else{ 
+		    fertilizerSuggestion.innerHTML = "NO FERTILIZER IS NEEDED,THE RICE CROP IS HEALTHY" ;
+                        return;  
+			} 
+		}
+	       else if (cropName.toLowerCase()=='wheat')   
+		{ 
+		if (Nitrogen < 1.5 &&  Phosphorus< 0.2 &&  Potassium < 1.0) 
+                    {
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:NPK 15-15-15<br> SHOP NAME: SRI SAI FERTILIZER PVT.LMT <br> Distance: 5KM" ;
+                        return;
+                    }  
+                    else if (Nitrogen > 1.5 && Phosphorus<0.2 && Potassium<1.0){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:NPK 10-20-20<br> SHOP NAME: SATYA SAI  FERTILIZER PVT.LMT <br> Distance: 5KM" ;
+                        return;
+
+                    } 
+		    else if (Nitrogen < 1.5 && Phosphorus > 0.2 && Potassium<1.0){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:potassium nitrate (KNO3).<br> SHOP NAME: SRI HARSHA PESTICIDES & FERTILIZER PVT.LMT <br> Distance: 7KM" ;
+                        return;
+
+                    } 
+		    else if (Nitrogen < 1.5 && Phosphorus < 0.2 && Potassium > 1.0){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:diammonium phosphate (DAP)<br> SHOP NAME: SRI VIGNESWARA FERTILIZER PVT.LMT <br> Distance: 6KM" ;
+                        return; 
+                }
+                else if (Nitrogen < 1.5 && Phosphorus > 0.2 && Potassium > 1.0){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:UREA <br> SHOP NAME: GROMOR PVT.LMT <br> Distance: 9KM" ;
+                        return; 
+                } 
+		else{ 
+		    fertilizerSuggestion.innerHTML = "NO FERTILIZER IS NEEDED,THE WHEAT CROP IS HEALTHY" ;
+                        return;  
+			}  
+		}  
+		else if (cropName.toLowerCase()=='cotton')   
+		{ 
+		if (Nitrogen < 2.5 &&  Phosphorus< 1 &&  Potassium < 2.5) 
+                    {
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:NPK 15-15-15<br> SHOP NAME: SRI SAI FERTILIZER PVT.LMT <br> Distance: 5KM" ;
+                        return;
+                    }  
+                    else if (Nitrogen > 2.5 && Phosphorus<1 && Potassium<2.5){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:NPK 10-20-20<br> SHOP NAME: SATYA SAI  FERTILIZER PVT.LMT <br> Distance: 5KM" ;
+                        return;
+
+                    } 
+		    else if (Nitrogen < 2.5 && Phosphorus > 1 && Potassium<2.5){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:potassium nitrate (KNO3).<br> SHOP NAME: SRI HARSHA PESTICIDES & FERTILIZER PVT.LMT <br> Distance: 7KM" ;
+                        return;
+
+                    } 
+		    else if (Nitrogen < 2.5 && Phosphorus < 1 && Potassium > 2.5){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:diammonium phosphate (DAP)<br> SHOP NAME: SRI VIGNESWARA FERTILIZER PVT.LMT <br> Distance: 6KM" ;
+                        return; 
+                }
+                else if (Nitrogen < 2.5 && Phosphorus > 1 && Potassium > 2.5){ 
+                        fertilizerSuggestion.innerHTML = "FERTILIZER:UREA <br> SHOP NAME: GROMOR PVT.LMT <br> Distance: 9KM" ;
+                        return; 
+                } 
+		else{ 
+		    fertilizerSuggestion.innerHTML = "NO FERTILIZER IS NEEDED,THE COTTON CROP IS HEALTHY" ;
+                        return;  
+			}  
+		} 
+}
+
+}
+    </script>
+</body>
+</html>

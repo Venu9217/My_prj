@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        button {
+            padding: 10px;
+            background-color: red;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Crops Details </h2>
+        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Crop Name</th>
+                        <th>land Size
+                            (IN ACRES)</th>
+                        <th>Planting Date</th>
+                        <th>Harvest Date</th>
+                        <th>Yield Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for crop in crops %}
+                        <tr>
+                            <td>{{ crop.crop_name }}</td>
+                            <td>{{ crop.land_size }}</td>
+                            <td>{{ crop.planting_date }}</td>
+                            <td>{{ crop.harvest_date }}</td>
+                            <td>{{ crop.yield_amount }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+        <a  href="{% url 'welcome' %}" ><button >Go back</button></a>
+    </div> 
+    
+</body>
+</html>

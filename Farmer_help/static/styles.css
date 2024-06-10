@@ -1,0 +1,50 @@
+/* Style for the entire page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Styles for headers */
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Adding a bit of padding around the main content */
+main {
+    padding: 20px;
+    text-align: center; /* Aligning the buttons in the center */
+}
+
+/* Style for buttons */
+.button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for logout button */
+.logout-button {
+    background-color: #dc3545; /* Red color */
+    color: white;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+    .button {
+        width: 100%;
+    }
+}

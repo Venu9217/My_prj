@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmers' Portal</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .bg {
+            background-image: url('background.jpg'); /* Replace 'background.jpg' with your image path */
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .container {
+            text-align: center;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        h3{
+            color:red;
+            text-align: center; 
+            margin-top:150px;
+            left:30%
+
+        }
+    </style>
+</head>
+<body>
+    <div class="bg"> 
+        <h3> {{logout_mass}}</h3>
+        <div class="container">
+            <h1>Welcome to the Farmers' Portal</h1>
+            <p>Your one-stop solution for managing your farming activities.</p>
+            <form action="{% url 'register' %}">
+                <button type="submit" class="button">Register</button>
+            </form>
+            <form action="{% url 'login' %}">
+                <button type="submit" class="button">Login</button>
+            </form> 
+            <h2 style="color:rgb(26, 226, 26) ">{{mas}}</h2>
+        </div>
+    </div>
+</body>
+</html>

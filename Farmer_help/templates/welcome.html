@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    {% load static %}
+    <main>
+        <h1>Welcome, {{ user }}!</h1>
+        <h2>{{ message }}</h2>
+        <div class="buttons">
+            <a href="{% url 'fertilizer_suggest' %}" class="button">Fertilizer Suggestion</a>
+            <a href="{% url 'add_crop' %}" class="button">ADD CROP</a> 
+            <a href="{% url 'search' %}" class="button">Search My Details</a>
+            <form action="logout" style="display: inline;">
+                <input type="submit" class="button logout-button" value="Logout">
+            </form>
+        </div>
+    </main>
+</body>
+</html>
